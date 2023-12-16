@@ -1,0 +1,176 @@
+* {
+    box-sizing: border-box;
+}
+
+/* minimum size of the screen? */
+html {
+    min-height: 100vh;
+}
+
+body {
+    margin: 0;
+    background-color: #f0dfcf;
+}
+h2 {
+    text-align: center;
+}
+
+.page-title {
+    color: #ca996e;
+    text-align: center;
+}
+
+.birthday-text {
+    color: #e7503c;
+    text-align: center;
+}
+
+.link-button {
+    font-size: 20px;
+    background-color: #e7503c;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px;
+}
+
+.otter-gif {
+    margin-top: 25px;
+}
+
+.game-info-container  {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+}
+
+.game-info {
+    color: #ca996e;
+}
+
+.game-container {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    grid-gap: 10px;
+    margin: 40px;
+    justify-content: center;
+    perspective: 500px;
+}
+
+.card {
+    position: relative;
+    height: 175px;
+    width: 150px;
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    border-width: 2px;
+    border-style: solid;
+    transition: transform 500ms ease-in-out;
+}
+
+.card.visible .card-back {
+    transform: rotateY(-180deg);
+}
+
+.card.visible .card-front {
+    transform: rotateY(0);
+}
+
+/* card matched css here, perhaps just make the border a brighter green */
+.card.matched .card-front { /* might need to change to card-front */
+    border-color: green;
+    border-width: 4px;
+}
+
+.overlay-text {
+    position: fixed;
+    top: 0;
+    left: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    color: white;
+}
+
+.overlay-text-small {
+    font-size: .3em;
+    background-color: white;
+    border-radius: 5px;
+    padding: 15px;
+}
+.overlay-text.visible {
+    display: flex;
+    flex-direction: column;
+    animation: overlay-grow 500ms forwards;
+}
+
+.overlay-text.hidden {
+    display: none;
+
+}
+
+@keyframes overlay-grow {
+    from {
+        background-color: rgba(0, 0, 0, 0);
+        font-size: 0;
+    }
+    to {
+        background-color: rgba(0, 0, 0, .8);
+        font-size: 8em;
+    }
+}
+.card-back {
+    background-color: #b6c9b9;
+    border-color: #863136;
+}
+
+.card-front {
+    border-color: #b6c9b9;
+    transform: rotateY(180deg);
+}
+
+.otter {
+    height: 190px;
+    transform: scale(.98);
+}
+
+.card-front:hover .otter {
+    transform: scale(1);
+}
+
+.pompom-back {
+    position: absolute;
+    width: 75px;
+    height: 75px;
+    transform: rotate(-5deg);
+    transition: transform 100ms ease-in-out;
+}
+
+.card-back:hover .pompom-back {
+    /* transform: translateY(0); */
+    transform: scale(115%);
+}
+
+@media (max-width: 600px) {
+    .game-container {
+        grid-template-columns: repeat(2, auto);
+    }
+
+    .game-info-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
